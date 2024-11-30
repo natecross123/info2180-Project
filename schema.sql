@@ -71,7 +71,6 @@ CREATE TABLE notes (
     created_at DATETIME
 );
 
--- Insert a user with hashed password
 INSERT INTO users (firstname, lastname, email, password, role, created_at) 
 VALUES ('Admin', 'User', 'admin@project2.com', 'password123', 'admin', NOW());
 

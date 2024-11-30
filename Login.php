@@ -8,22 +8,22 @@ function logging($event_type, $details){
 
 session_start();
 
-$host = "localhost";
+$host = "localhost"; 
 $user = "root";
 $pass = "password123";
 $db = "dolphin_crm";
 
-$conn = new mysqli('localhost', 'root', '', 'dolphin_crm');
+$conn = new mysqli('localhost', 'root', 'password123', 'dolphin_crm');
 
 if($conn -> connect_error){
     die("Connection failed: " . $conn -> connect_error);
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $Emailaddress = $conn -> real_escape_string($_POST['Email address)']);
+    $Emailaddress = $conn -> real_escape_string($_POST['Emailaddress']);
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT * FROM Emailaddress WHERE Emailaddress = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt -> bind_param("s", $Emailaddress);
@@ -37,8 +37,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
         if($password === $user['password']){
             $_SESSION['role'] = $user['role'];
-            $_SESSION['Email address'] = $Emailaddress;
+            $_SESSION['Emailaddress'] = $Emailaddress;
 
+            $redirectUrl = match($user['role']){
+                'dashboard' => 'dashboard.html',
+                
+                default => 'login.php'
+            };
+            
 
             header('Content-Type: application/json');
             echo json_encode(['success' => true, 'redirectUrl' => $redirectUrl]);
@@ -46,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
         } else {
             header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => 'Invalid Email address or password']);
+            echo json_encode(['success' => false, 'message' => 'Invalid username or password']);
             exit();
         }
     } else {

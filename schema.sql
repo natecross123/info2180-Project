@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `schema_sql`
+-- Database: `dolphin_crm`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ DROP DATABASE IF EXISTS dolphin_crm;
 CREATE DATABASE dolphin_crm;
 USE dolphin_crm;
 
--- schema.sql
+
 -- Create users table
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE users (

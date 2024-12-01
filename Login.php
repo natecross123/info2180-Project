@@ -1,10 +1,11 @@
 <?php
+header('Content-Type: application/json');
 
 session_start();
 
 $host = "localhost";
 $user = "root";
-$pass = "password123";
+$pass = "";
 $db = "dolphin_crm";
 
 $conn = new mysqli('localhost', 'root', '', 'dolphin_crm');
@@ -14,7 +15,7 @@ if($conn -> connect_error){
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $Emailaddress = $conn -> real_escape_string($_POST['Email address)']);
+    $Emailaddress = $conn -> real_escape_string($_POST['email']);
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM users WHERE email = ?";
@@ -29,28 +30,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
         if($password === $user['password']){
             $_SESSION['role'] = $user['role'];
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $Emailaddress;
 
-            $redirectUrl = match($user['role']){
-                'Admin' => 'Admin_dashboard.html',
-                'User' => 'User_dashboard.html',
-                default => 'login.php'
+            $redirectUrl = 'login.php';
+            if($user['role'] === 'admin'){
+                $redirectUrl = 'Admin_dashboard.html';
             };
+            if($user['role'] === 'user'){
+                $redirectUrl = 'User_dashboard.html';
+            }
             
 
-            header('Content-Type: application/json');
             echo json_encode(['success' => true, 'redirectUrl' => $redirectUrl]);
             exit();
             
         } else {
-            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'Invalid username or password']);
             exit();
         }
     } else {
-        header('Content-Type: application/json');
         echo json_encode(['success' => false, 'message' => 'User not found']);
-        
         exit();
     }
     

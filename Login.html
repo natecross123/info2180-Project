@@ -53,7 +53,7 @@
             fetch('Login.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: `username=${encodeURIComponent(Emailaddress)}&password=${encodeURIComponent(userpwd)}`
+                body: `email=${encodeURIComponent(Emailaddress)}&password=${encodeURIComponent(userpwd)}`
             })
             .then(response => {
                 if(!response.ok){

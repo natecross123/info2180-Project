@@ -11,44 +11,33 @@ body {
 header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    background: #1996ea;
+    background: #074164;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
     padding: 0px 0%;
     display: flex;
-    align-items: center;
-}
-  
-  header .logo{
-    font-weight: bolder;
-    font-size: 1rem;
-    background: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    max-height: 100%;
-    line-height: 1;
+    color: white;
 }
 
 header .logo img {
-    max-height: 95px;
+    max-height: 45px;
     width: auto;
     height: auto;
+    margin-left: 25px;
 }
 
 .login-container {
-    background-color: #fffdfd;
+    background-color: transparent;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .login-container h2 {
     margin-bottom: 15px;
-    margin-left: 175px;
+    margin-left: 240px;
 }
 
 .login-container input {
-    width: 80%;
+    width: 100%;
     padding: 10px;
     margin: 10px;
     border: 1px solid #ccc;
@@ -56,18 +45,23 @@ header .logo img {
 }
 
 .login-container button {
-    width: 30%;
+    width: 100%;
     padding: 13px;
     font-size: 1rem;
-    background-color: #e0473f;
+    background-color: #0d537e;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 150px;
+    margin-left: 20px;
     margin-top: 10px;
 }
 
 .login-container button:hover {
-    background-color: #e30909;
+    background-color: #07334f;
+}
+
+footer{
+    position: fixed;
+    bottom: 0; left: auto; right: auto;
 }

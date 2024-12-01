@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Screen</title>
     <link rel="icon" type="image/x-icon" href="">
-    <link rel="stylesheet" href="login.css">                 
+    <link rel="stylesheet" href="Login.css">                 
 </head>
 
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="login.php" method="POST">
+        <form action="Login.php" method="POST">
             <input type="text" name="Email address" placeholder="Email address">
             <input type="password" name="password" placeholder="Password">
-            <div>
-                <button class = "btn btn-submit" id = "submitButton">Login</button>
-            </div>
+            <button class = "btn log-btn" id = "loginButton">Login</button>
             <div id = "error-message" style = "color: red; display: none;"></div>
         </form>
     </div>
@@ -26,18 +24,19 @@
 
 <header>
     <div class = "logo">
-        <img src="logo-.png" alt="dolphin logo">
+        <img src="favicon.png" alt="dolphin logo">
     </div>
+    <p>Dolphin CRM</p>
 </header>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const submitbutton = document.getElementById("submitButton");
+        const loginbutton = document.getElementById("loginButton");
         const EmailaddressInput = document.querySelector('input[name = "Email address"]');
         const userpwdInput = document.querySelector('input[name = "password"]');
         const errorContainer = document.getElementById("error-message");
     
-        submitbutton.addEventListener('click', function(event) {
+        loginbutton.addEventListener('click', function(event) {
             event.preventDefault();
         
             if(errorContainer){
@@ -52,7 +51,7 @@
                 return;
             }
         
-            fetch('login.php', {
+            fetch('Login.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: `username=${encodeURIComponent(Emailaddress)}&password=${encodeURIComponent(userpwd)}`
@@ -67,7 +66,7 @@
                 if(data.success){
                     window.location.href = data.redirectUrl;
                 } else{
-                    showError(data.message || "Incorrect Emailaddress or password.");
+                    showError(data.message || "Incorrect Email address or password.");
                 }
             })
             .catch(error => {
@@ -86,4 +85,7 @@
         }
     });
 </script>
+<footer>
+    <p>Copyright &copy, 2024 Dolphin CRM</p>
+</footer>
 </html>

@@ -61,6 +61,14 @@ header .logo img {
     background-color: #07334f;
 }
 
+.login-container .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #fff;
+    line-height: 57px;
+}
+
 footer{
     position: fixed;
     bottom: 0; left: auto; right: auto;

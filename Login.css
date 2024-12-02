@@ -33,7 +33,7 @@ header .logo img {
 
 .login-container h2 {
     margin-bottom: 15px;
-    margin-left: 240px;
+    margin-left: 200px;
 }
 
 .login-container input {
@@ -55,18 +55,20 @@ header .logo img {
     cursor: pointer;
     margin-left: 20px;
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-lock{
+    margin-right: 10px;
+}
+
+.btn-text{
+    margin-left: 150px;
 }
 
 .login-container button:hover {
     background-color: #07334f;
-}
-
-.login-container .icon{
-    position: absolute;
-    right: 8px;
-    font-size: 1.2em;
-    color: #fff;
-    line-height: 57px;
 }
 
 footer{

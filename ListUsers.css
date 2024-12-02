@@ -53,7 +53,7 @@ main {
 .add-user-button{
     position: absolute;
     top:115px;
-    right:100px;
+    right:150px;
     background-color: #454ed0;
     color:white;
     border: none;

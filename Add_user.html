@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolphin CRM Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="AddUser_style.css">
+                                    
+</head>
+
+<body>
+    <div class = "container">
+        <section class="sidebar">
+            <ul>
+                <li>
+                    <span class = "icon"><ion-icon name="home"></ion-icon></span>
+                    <a href = "Admin_dashboard.html">Home</a>
+                </li>
+                <li>
+                    <span class = "icon"><ion-icon name="people-circle"></ion-icon></span>
+                    <a href = "#">New Contact</a>
+                </li>
+                <li>
+                    <span class = "icon"><ion-icon name="people"></ion-icon></span>
+                    <a href = "Users_admin.html">Users</a>
+                </li>
+                <div class = "separator"></div>
+                <div class = "logout">
+                    <li>
+                        <span class = "icon"><ion-icon name="log-out"></ion-icon></span>
+                        <a href = "Logout.php">Logout</a>
+                    </li>
+                </div>
+            </ul>
+        </section>
+    </div>
+
+    <div class = "content">
+        <div class = "header-container">
+            <h1>New User</h1>
+        </div>
+        <div class = "user-form">
+            <form id="userForm">
+                <div class = "column1">
+                    <div class = "form-input">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class = "form-input">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class = "column2">
+                    <div class = "form-input">
+                        <label>Email</label>
+                        <input type="email" name="userEmail" placeholder="e.g JaneDoe@gmail.com" required>
+                    </div>
+                    <div class = "form-input">
+                        <label>Password</label>
+                        <input type="password" name="userPassword" placeholder="Password" required>              
+                    </div>
+                </div>
+                <div class = "column1">
+                    <div class = "form-input">
+                        <label>Role</label>
+                        <select name = "role" required>
+                            <option value = "Member">Member</option>
+                            <option value = "Admin">Admin</option>
+                        </select>
+                    </div>
+                </div>                  
+                <div class = "form-input">
+                    <button type="submit" id="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<header>
+    <div class = "logo">
+        <img src="favicon.png" alt="dolphin logo">
+    </div>
+    <p>Dolphin CRM</p>
+</header>
+
+<script>
+document.getElementById('userForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    const password = formData.get('userPassword');
+    const pwdPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    if(!pwdPattern.test(password)){
+        alert('Password must be at least 8 characters long, contain at least one letter, one capital letter and one number.');
+        return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Add_user.php', true);
+
+    xhr.onload = function(){
+        if(xhr.status === 200){
+            try{
+                const response = JSON.parse(xhr.responseText);
+                alert(response.message);
+                if(response.status === 'success'){
+                    window.location.href = 'Add_user.html';
+                }
+            } catch(e){
+                alert('Error parsing server response');
+            }
+        } else{
+            alert('Error adding new user. Please try again.');
+        }
+    };
+
+    xhr.onerror = function(){
+        alert('Network error. Please check connection.');
+    };
+    xhr.send(formData);
+})
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

@@ -1,0 +1,148 @@
+body{
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #e2e0e0;
+    display: flex;
+}
+
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #032d47;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    padding: 0px 0%;
+    display: flex;
+    color: white;
+}
+
+header .logo img {
+    max-height: 45px;
+    width: auto;
+    height: auto;
+    margin-left: 25px;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+}
+
+.sidebar{
+    background-color: #f5f5f5;
+    color: black;
+    margin-left: -15px;
+    width: 175px;
+    height: 550px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.sidebar ul li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.sidebar .icon{
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+.separator{
+    height: 2px;
+    background-color: #dfdfdf;
+    margin: 10px 0;
+    width: 105%;
+}
+
+.sidebar .logout{
+    margin-top: 30px;
+}
+
+.sidebar ul li a:hover{
+    color: #032d47;
+}
+
+.content{
+    flex: 1;
+    width: 850px;
+    padding: 40px;
+    margin-top: 50px;
+    margin-right: 350px;
+}
+
+.header-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-container h1{
+    margin: 0;
+    font-size: 2rem;
+}
+
+.user-form{
+    width: 950px;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+}
+
+.column1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.column2{
+    display: flex;
+    justify-content: space-between;
+}
+
+label{
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 110%;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+button{
+    margin-left: 650px;
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background color 0.3s;
+}
+
+button:hover{
+    background-color: #434190;
+}

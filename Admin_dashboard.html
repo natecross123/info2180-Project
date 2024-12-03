@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +25,7 @@
                 </li>
                 <li>
                     <span class = "icon"><ion-icon name="people"></ion-icon></span>
-                    <a href = "#">Users</a>
+                    <a href = "Users_admin.html">Users</a>
                 </li>
                 <div class = "separator"></div>
                 <div class = "logout">
@@ -52,35 +53,7 @@
                     <button>Assigned to me</button>
                 </div>
             </div>
-            <div class="display-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Company</th>
-                            <th>Type</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mr. Michael Scott</td>
-                            <td>michael.scott@paper.co</td>
-                            <td>The Paper Company</td>
-                            <td><span class="tag sales-lead">Sales Lead</span></td>
-                            <td><a href="#">View</a></td>
-                          </tr>
-                          <tr>
-                            <td>Mr. Dwight Shrute</td>
-                            <td>dwight.shrute@paper.co</td>
-                            <td>The Paper Company</td>
-                            <td><span class="tag support">Support</span></td>
-                            <td><a href="#">View</a></td>
-                          </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div id = "display-table"></div>
         </div>
     </div>
 </body>
@@ -91,15 +64,39 @@
     </div>
     <p>Dolphin CRM</p>
 </header>
+
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const xhr = new XMLHttpRequest();
+    const displayTable = document.getElementById('display-table');
+
+    function fetchContacts(filter = ''){
+        xhr.open('GET', `dashboard.php?filter=${filter}`, true);
+        xhr.onload = function(){
+            displayTable.innerHTML = '';
+            if(xhr.status >= 200 && xhr.status < 300){
+                displayTable.innerHTML = xhr.responseText;
+            } else{
+                displayTable.textContent = 'No contacts found.'
+            }
+        };
+        xhr.send();
+    }
+
+    fetchContacts();
+
     const filterBtns = document.querySelectorAll('.filters button');
     filterBtns.forEach(button => {
         button.addEventListener('click', () => {
             filterBtns.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            const filter = button.textContext;
+            fetchContacts(filter);
         });
     });
+});    
 </script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </html>

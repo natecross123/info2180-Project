@@ -1,4 +1,5 @@
 body{
+    overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #e2e0e0;
     display: flex;
@@ -31,7 +32,7 @@ header .logo img {
     color: black;
     margin-left: -15px;
     width: 175px;
-    height: 600px;
+    height: 550px;
     padding: 35px;
     display: flex;
     flex-direction: column;
@@ -61,10 +62,10 @@ header .logo img {
 }
 
 .separator{
-    height: 1px;
+    height: 2px;
     background-color: #dfdfdf;
     margin: 10px 0;
-    width: 100%;
+    width: 105%;
 }
 
 .sidebar .logout{
@@ -171,7 +172,7 @@ header .logo img {
     transform: scaleX(1);
 }
 
-.display-table table{
+#display-table table{
     width: 145%;
     border-collapse: collapse;
     margin-top: 15px;

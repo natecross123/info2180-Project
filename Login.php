@@ -28,15 +28,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($result -> num_rows === 1){
         $user = $result -> fetch_assoc();
     
-        if($password === $user['password']){
+        if(password_verify($password, $user['password'])){
             $_SESSION['role'] = $user['role'];
             $_SESSION['username'] = $Emailaddress;
 
             $redirectUrl = 'login.php';
-            if($user['role'] === 'admin'){
+            if($user['role'] === 'Admin'){
                 $redirectUrl = 'Admin_dashboard.html';
             };
-            if($user['role'] === 'user'){
+            if($user['role'] === 'Member'){
                 $redirectUrl = 'User_dashboard.html';
             }
             
@@ -56,7 +56,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt -> close();
     $conn -> close();
 }
-
-
-
 ?>

@@ -1,76 +1,128 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #e2e0e0;
     margin: 0;
     padding: 0;
 }
 
 header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #074164;
+    top: 0; left: 0; right: 0;
+    background: #032d47;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
-    padding: 10px 20px;
+    padding: 0px 0%;
     display: flex;
-    align-items: center;
     color: white;
 }
 
 header .logo img {
     max-height: 45px;
-    margin-right: 10px;
+    width: auto;
+    height: auto;
+    margin-left: 25px;
 }
 
-main {
-    margin-top: 70px; 
+.container{
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    width: 100%;
+}
+
+.sidebar{
+    background-color: #f5f5f5;
+    color: black;
+    margin-left: -15px;
+    width: 175px;
+    height: 550px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.sidebar ul li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.sidebar .icon{
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+.separator{
+    height: 2px;
+    background-color: #dfdfdf;
+    margin: 10px 0;
+    width: 105%;
+}
+
+.sidebar .logout{
+    margin-top: 30px;
+}
+
+.sidebar ul li a:hover{
+    color: #032d47;
+}
+
+.content{
+    flex: 1;
+    width: 850px;
+    padding: 40px;
+    margin-top: 50px;
+    margin-right: 150px;
 }
 
 .user-section {
-    width: 80%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1000px;
+    margin:0 auto;
 }
 
 .user-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: left;
-    color: #074164;
+    margin-bottom: 30px;
+    font-size: 2rem;
 }
 
 .table-container {
     background: white;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .add-user-button{
     position: absolute;
-    top:115px;
-    right:150px;
-    background-color: #454ed0;
+    top:130px;
+    right:190px;
+    background-color: #5a67d8;
     color:white;
     border: none;
-    padding: 10px 10px;
+    padding: 10px 20px;
     font-size: 0.8rem;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor:pointer;
 }
 
 .add-user-button:hover{
-    background-color: #3840aa;
+    background-color: #434190;
 }
 
 #users-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 3px;
     overflow: hidden;
     border: 1px solid #ddd;

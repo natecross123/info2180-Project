@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Exo+2");
+
+body{
+    display:grid;
+    grid-template-columns: 15% 100%;
+    grid-template-rows: 15% 150% ;
+   
+}
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #032d47;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    padding: 0px 0%;
+    display: flex;
+    color: white;
+}
+
+
+#header-pic {
+    max-height: 45px;
+    width: auto;
+    height: auto;
+    margin-left: 25px;
+}
+
+
+.contact-details {
+    text-align: center;
+    margin: 20px;
+}
+#assign-to {
+    margin-right: 30px;
+    background-color: #20db6e;
+}
+
+#switch {
+    margin-right: 30px;
+    background-color: rgb(234, 156, 10);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.notes {
+    margin: 20px;
+}
+
+.notes div {
+    border: 1px solid;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#new-note-form {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+}
+
+.container {
+    text-align: center;
+}

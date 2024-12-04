@@ -9,7 +9,7 @@
 
 DROP DATABASE IF EXISTS dolphim_crm;
 CREATE DATABASE dolphin_crm;
-USE dolphin_crm
+USE dolphin_crm;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,12 +39,19 @@ CREATE TABLE `contacts` (
   `email` varchar(255) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `company` varchar(255) DEFAULT NULL,
-  `type` enum('sales lead','support') DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   `assigned_to` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+--
+-- Dumping data for table `users`
+--
+INSERT INTO `contacts` (`title`, `firstname`, `lastname`, `email`, `telephone`, `company`, `label`, `assigned_to`, `created_by`) VALUES 
+('Mr.','John','Doe','john.doe@example.com','888-777-6666','Acme Corporation','Sales Lead',1,2);
 
 -- --------------------------------------------------------
 
@@ -67,7 +74,7 @@ CREATE TABLE `notes` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -80,7 +87,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `role`, `created_at`) VALUES
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `role`, `created_at`) VALUES
 (1, 'Admin', 'User', 'admin@project2.com', '$2y$10$2oaxXxv0LU8vzTaDftSTuuWUaQDhH.yORO2IGFc.9agComH4CKQTu', 'Admin', '2024-12-03 00:13:18'),
 (2, 'Micheal', 'Scott', 'micheal.scott@paper.co', '$2y$10$h5uA0pIZk2ETEhs2QdgTUeVd.M1PMvisYxO14gPXRcE2JgJ5UUTCW', 'Member', '2024-12-03 00:14:07'),
 (3, 'Jim', 'Halpert', 'jim.halpert@dunder.mif', '$2y$10$Lig4NuPaQkvnIrvH7/HoBOHGbs8IwmbPx23aR2PPZGr/qQtd0eWDC', 'Member', '2024-12-03 00:14:45'),
@@ -124,9 +131,9 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
+GRANT ALL PRIVILEGES ON dolphin_crm.* TO 'Admin'@'localhost'IDENTIFIED BY 'password123';
+FlUSH PRIVILEGES;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-GRANT ALL PRIVILEGES ON dolphin_crm.* TO 'Admin'@'localhost'IDENTIFIED BY 'password123';
-FlUSH PRIVILEGES;

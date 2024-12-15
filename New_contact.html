@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolphin CRM Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="AddUser_style.css">
+                                    
+</head>
+
+<body>
+    <div class = "container">
+        <section class="sidebar">
+            <ul>
+                <li>
+                    <span class = "icon"><ion-icon name="home"></ion-icon></span>
+                    <a href = "Admin_dashboard.html">Home</a>
+                </li>
+                <li>
+                    <span class = "icon"><ion-icon name="people-circle"></ion-icon></span>
+                    <a href = "New_contact.html">New Contact</a>
+                </li>
+                <li>
+                    <span class = "icon"><ion-icon name="people"></ion-icon></span>
+                    <a href = "Users_admin.html">Users</a>
+                </li>
+                <div class = "separator"></div>
+                <div class = "logout">
+                    <li>
+                        <span class = "icon"><ion-icon name="log-out"></ion-icon></span>
+                        <a href = "Logout.php">Logout</a>
+                    </li>
+                </div>
+            </ul>
+        </section>
+    </div>
+
+    <div class = "content">
+        <div class = "header-container">
+            <h1>New Contact</h1>
+        </div>
+        <div class = "user-form">
+            <form id="userForm">
+                <div class = "column">
+                    <div class = "title-input">
+                        <label>Title</label>
+                        <select name = "title" required>
+                            <option value = "">Select Title</option>
+                            <option value = "Mr.">Mr</option>
+                            <option value = "Mrs.">Mrs</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "column">
+                    <div class = "form-input">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class = "form-input">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class = "column">
+                    <div class = "form-input">
+                        <label>Email</label>
+                        <input type="email" name="conEmail" placeholder="e.g JaneDoe@gmail.com" required>
+                    </div>
+                    <div class = "form-input">
+                        <label>Telephone</label>
+                        <input type="tel" name="contactphone" placeholder="Telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>              
+                    </div>
+                </div>
+                <div class = "column">
+                    <div class = "form-input">
+                        <label>Company</label>
+                        <input type="text" name="company" required>
+                    </div>
+                    <div class = "column">
+                        <label>Type</label>
+                        <select name = "role" required>
+                            <option value = "">Select Type</option>
+                            <option value = "Sales Lead">Sales Lead</option>
+                            <option value = "Support">Support</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class = "column">
+                    <div class = "column">
+                        <label>Assigned To</label>
+                        <select name = "assign_to" required>
+                            <option value = "">Select User</option>
+                        </select>
+                    </div>
+                </div>                 
+                <div class = "form-input">
+                    <button type="submit" id="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<header>
+    <div class = "logo">
+        <img src="favicon.png" alt="dolphin logo">
+    </div>
+    <p>Dolphin CRM</p>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdown = document.querySelector('select[name="assign_to"]');
+    const userForm = document.getElementById('userForm');
+
+    // Fetch users from the server
+    fetch('fetch_users.php')
+        .then(response => response.json())
+        .then(users => {
+            // Populate the dropdown
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.user_id;
+                option.textContent = `${user.firstname} ${user.lastname}`;
+                dropdown.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+            const option = document.createElement('option');
+            option.textContent = 'Failed to load users';
+            dropdown.appendChild(option);
+        });
+
+    // Form submission handler
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data
+        const formData = new FormData(this);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'New_contact.php', true);
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.status === 'success') {
+                        alert(response.message);
+                        window.location.href = 'New_contact.html';
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                } catch (e) {
+                    alert('Error parsing server response');
+                }
+            } else {
+                alert('Error adding student. Please try again.');
+            }
+        };
+
+        xhr.onerror = function() {
+            alert('Network error. Please check your connection.');
+        };
+
+        xhr.send(formData);
+    });
+});
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

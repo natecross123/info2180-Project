@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Populate the dropdown
             users.forEach(user => {
                 const option = document.createElement('option');
-                option.value = user.user_id;
+                option.value = user.id;
                 option.textContent = `${user.firstname} ${user.lastname}`;
                 dropdown.appendChild(option);
             });
@@ -140,6 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Collect form data
         const formData = new FormData(this);
+        const formDataobject = Object.fromEntries(formData);
+        console.log(formDataobject);
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'New_contact.php', true);

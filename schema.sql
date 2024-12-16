@@ -61,15 +61,15 @@ CREATE TABLE contacts (
     email VARCHAR(255),
     telephone VARCHAR(20),
     company VARCHAR(255),
-    type ENUM('sales lead', 'support'),
+    label VARCHAR(255),
     assigned_to INT,
     created_by INT,
     created_at DATETIME,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO `contacts` (`title`, `firstname`, `lastname`, `email`, `telephone`, `company`, `type`, `assigned_to`, `created_by`) VALUES 
-('Mr.','John','Doe','john.doe@example.com','888-777-6666','Acme Corporation','Sales Lead',1,2);
+INSERT INTO `contacts` (`title`, `firstname`, `lastname`, `email`, `telephone`, `company`, `label`, `assigned_to`, `created_by`, `created_at`) VALUES 
+('Mr.','John','Doe','john.doe@example.com','888-777-6666','Acme Corporation','Sales Lead',1,2,'2024-12-03 00:13:18');
 
 -- Create notes table
 DROP TABLE IF EXISTS `notes`;
